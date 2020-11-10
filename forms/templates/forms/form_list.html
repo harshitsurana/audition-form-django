@@ -54,7 +54,11 @@
           {% endfor %}
         </ol>
         {% else %}
-          <p>There are no forms submitted. Click on create form to submit a form.</p>
+        {% if name or email or start_date or end_date %}
+        <p>There are no forms with the applied filter properties.</p>
+        {% else %}
+          <p>There are no forms submitted. Click on create form to submit a new form.</p>
+          {% endif %}
         {% endif %}
         </p>
         
