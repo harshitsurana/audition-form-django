@@ -1,0 +1,40 @@
+{% extends "base_menu.html" %}
+{% load humanize %}
+
+{% block content %}
+
+<span style="float: right;">
+({{ form.updated_at|naturaltime }})
+{% if form.owner == user %}
+<a href="{% url 'forms:form_update' form.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'forms:form_delete' form.id %}"><i class="fa fa-trash"></i></a>
+{% endif %}
+</span>
+<h1>Form Details</h1>
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <img src="{{ form.profile_img.url }}" class="img-responsive" style="width: 50%; height: auto; max-height: 400px; margin: auto; margin-bottom: 2em;" />
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <p>
+        <strong>Name: </strong>{{ form.name }}
+        <br>
+        <strong>Email: </strong>{{ form.email }}
+        <br>
+        <strong>Mobile: </strong>{{ form.mobile }} 
+        <br>
+        <strong>Roll No.: </strong>{{form.rollno}}
+        <br>
+        <strong>Branch: </strong>{{form.branch}}
+        <br>
+        <strong>Gender: </strong>{{form.gender}}
+        <br>
+        {% if form.website %}
+        <strong>Website: </strong><a href="{{form.website}}">{{form.website}}</a>
+        {% endif %}
+      </p>
+    </div>
+<br>
+{% endblock %}

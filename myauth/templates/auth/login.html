@@ -1,0 +1,18 @@
+{% extends "base_menu.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<br>
+<p>Use Username/Email Id to login</p>
+
+<form method="post" action="{% url 'login' %}">
+{% csrf_token %}
+{{ form|crispy }}
+<input type="submit" class="btn btn-primary" value="Login" />
+<input type="hidden" name="next" value="{{ next }}" />
+</form>
+<br>
+<p>
+  Not yet registered, Register <a href="{% url 'myauth:signup' %}"><strong>HERE!</strong></a>
+</p>
+{% endblock %}

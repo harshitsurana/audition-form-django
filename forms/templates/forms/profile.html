@@ -1,0 +1,56 @@
+{% extends "base_menu.html" %}
+{% block content %}
+
+<h1>Profile Details ( <a href="{% url 'forms:profile_update' %}"><i class="fa fa-pencil"></i></a>)</h1>
+
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <img src="{{ form.image.url }}" class="img-responsive" 
+        style="width: 50%; height: auto; margin: auto; margin-bottom: 2em;" />
+      
+  </div>
+    <div class="col-xs-12 col-sm-6">
+      <p>
+        <strong>Name: </strong>{{ form.name }}
+        <br>
+        <strong>Email: </strong>{{ email }}
+        <br>
+        <strong>Username: </strong>{{ username }}
+        <br>
+        <strong>Mobile: </strong>{{ form.mobile }}
+        <br>
+        <strong>Gender: </strong>{{form.gender}}
+        <br>
+        <strong>College: </strong>{{ form.college }}
+        <br>
+      {% if form.country %}
+        <strong>Country: </strong>{{ form.country }}
+        <br>
+      {% endif %}  
+      {% if form.state %}
+        <strong>State: </strong>{{ form.state }}
+        <br>
+      {% endif %} 
+      {% if form.city %}
+        <strong>City: </strong>{{ form.city }}
+        <br>
+      {% endif %}
+      
+      {% if form.github %}
+        <strong>Github: </strong><a href="{{form.github}}">{{form.github}}</a><br>
+      {% endif %}
+      
+      {% if form.codechef %}
+        <strong>Codechef: </strong><a href="{{form.codechef}}">{{form.codechef}}</a><br>
+      {% endif %}
+      
+      {% if form.bio %}
+        <strong>Bio: </strong>{{ form.bio }}<br>
+      {% endif %}
+      
+    </div>
+  </div>
+</div>
+{% endblock %}

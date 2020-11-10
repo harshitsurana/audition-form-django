@@ -1,0 +1,64 @@
+{% extends "base_menu.html" %}
+{% block content %}
+<br>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6">
+      <h2>Apply Filter</h2>
+      <div style="text-align: center;">
+        <form>
+          <strong>Name:</strong>
+          <input type="text" placeholder="Name" name="name"
+        {% if name %} value="{{ name }}" {% endif %}
+        >
+        <br>
+        <br>
+        <strong>Start Date:</strong>
+         <input type="date" name="start_date" 
+         {% if start_date %} value="{{ start_date }}" {% endif %}
+         >
+         <br>
+         <br>
+         <strong>End Date:</strong>
+         <input type="date" name="end_date" 
+         {% if end_date %} value="{{ end_date }}" {% endif %}
+         >
+         <br>
+         <br>
+         <strong>Email:</strong>
+          <input type="email" placeholder="Email" name="email"
+        {% if email %} value="{{ email }}" {% endif %}
+        >
+        <br>
+        <br>
+         <button type="submit">Search <i class="fa fa-search"></i></button>
+       <a href="{% url 'forms:all' %}">Reset filter <i class="fa fa-undo"></i></a>
+       </form>
+       </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+      <h2>Forms</h2>
+      <p>
+        {% if form_list %}
+        <ol>
+          {% for form in form_list %}
+            <li>
+                <p>
+                <a href="{% url 'forms:form_detail'  form.id %}">{{ form.name }}</a>
+                {% if form.owner == user %}
+                (<a href="{% url 'forms:form_update' form.id %}">Edit</a> |
+                <a href="{% url 'forms:form_delete' form.id %}">Delete</a>)
+                {% endif %}
+              </p>
+            </li>
+          {% endfor %}
+        </ol>
+        {% else %}
+          <p>There are no forms submitted. Click on create form to submit a form.</p>
+        {% endif %}
+        </p>
+        
+    </div>
+  </div>
+</div>
+{% endblock %}

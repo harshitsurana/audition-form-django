@@ -1,0 +1,39 @@
+{% extends "base_bootstrap.html" %}
+{% block navbar %}
+<nav class="navbar navbar-default navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+      <a class="navbar-brand" href="/">Audition Forms</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+    <ul class="nav navbar-nav navbar-right">
+        {% if user.is_authenticated %}
+        <li>
+        <a href="{% url 'forms:form_create' %}">Create Form</a>
+        </li>
+        <li class="dropdown">
+          <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+            Welcome {{user}}
+            <b class="caret"></b>
+        </a>
+            <ul class="dropdown-menu">
+                <li><a href="{% url 'forms:profile'%}">Profile</a></li>
+                <li><a href="{% url 'myauth:pswrdchange' %}">Change Password</a></li>
+                <li><a href="{% url 'logout' %}?next={% url 'forms:all' %}">Logout</a></li>
+            </ul>
+        </li>
+        {% else %}
+        <li>
+        <a href="{% url 'login' %}?next={% url 'forms:all' %}">Login</a>
+        </li>
+        {% endif %}
+    </ul>
+  </div>
+</div>
+</nav>
+{% endblock %}
