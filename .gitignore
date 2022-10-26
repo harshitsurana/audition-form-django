@@ -67,7 +67,7 @@ venv.bak/
 *.pyc
 __pycache__/
 
-# Migration files
+# Migration files from individual app
 # website/blog/migrations/
 forms/migrations
 myauth/migrations
